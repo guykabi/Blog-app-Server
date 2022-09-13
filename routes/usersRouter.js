@@ -18,7 +18,7 @@ router.get('/:email',async(req,resp)=>{
                   return resp.status(200).json({message:'Email already exists',userName:data})
             }catch(err)
             {
-                  resp.status(500).json('Error')
+                  resp.status(500).json('Errorr')
             }
       }
       else{ //Get the user data 
