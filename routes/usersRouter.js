@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config() 
 
 router.get('/:email',async(req,resp)=>{
-      if(req.params.email.includes('@'))
+      if(req.params.email.includes('@')) //Check if the email exsits
       {
-      try{
+      try{  
             
            let data = await userModel.findOne({Email:req.params.email})
              if(!data)
@@ -18,13 +18,13 @@ router.get('/:email',async(req,resp)=>{
                   return resp.status(200).json({message:'Email already exists',userName:data})
             }catch(err)
             {
-                  resp.status(500).json(err)
+                  resp.status(500).json('qdfqf')
             }
       }
-      else{
+      else{ //Get the user data 
             try{
                    
-                  let data = await userModel.find({_id:req.params.email})
+                  let data = await userModel.find({_id:req.params.email}) //Search the user by his ID not email!!!!
                     if(!data)
                      {
                          return resp.status(200).json('User is not exists')
