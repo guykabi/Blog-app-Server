@@ -27,7 +27,7 @@ router.get('/:email',async(req,resp)=>{
                   let data = await userModel.find({_id:req.params.email}) //Search the user by his ID not email!!!!
                     if(!data)
                      {
-                         return resp.status(200).json('User is not exists')
+                         return resp.status(200).json('User is not exist')
                      }
                          return resp.status(200).json(data)
                    }catch(err)
