@@ -72,7 +72,6 @@ router.post('/',async(req,resp)=>{
 router.patch('/:id',async(req,resp)=>{
     if(req.body.Likes)
     {  
-       
         try{
             
             let data = await postModel.find({_id:req.params.id})
@@ -133,7 +132,17 @@ router.patch('/:id',async(req,resp)=>{
                 resp.status(500).json('Error')
          }
     }
-    
+    if(req.body.ProfileImage)
+    {
+       
+       try{
+        let data = await postModel.updateMany({UserId:req.params.id}, { $set: { ProfileImage: req.body.ProfileImage } })
+        resp.status(200).json('ProfileImages Updated')
+       }catch(err)
+       {
+         resp.status(500).json('Error')
+       }
+    }
 })
 
 router.delete('/:id',async(req,resp)=>{
