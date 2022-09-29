@@ -114,7 +114,7 @@ router.patch('/:id',async(req,resp)=>{
     if(req.body.Comments && !req.body.Comments[0]._id)//To add a comment
     {
         try{
-            let update = await postModel.updateOne({ _id: req.params.id }, 
+                 await postModel.updateOne({ _id: req.params.id }, 
                                 {$push: {Comments: req.body.Comments[0]}},)
                                 
                  resp.status(200).json('Comment has been made')
@@ -132,7 +132,7 @@ router.patch('/:id',async(req,resp)=>{
                 resp.status(500).json('Error')
          }
     }
-    if(req.body.ProfileImage)
+    if(req.body.ProfileImage || req.body.ProfileImage === '')
     {
        
        try{

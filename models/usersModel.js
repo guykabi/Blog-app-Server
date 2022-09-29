@@ -12,7 +12,8 @@ let UsersSchema = new Schema({
      Password:String, 
      Email:String,
      Image:String,
-     Age:Number
+     Age:Number,
+     Color:String
 },
 {timestamps:true}
 ) 
