@@ -6,12 +6,13 @@ const jwt = require('jsonwebtoken')
 
 
 router.get('/',async(req,resp)=>
-{ 
+{    
+    //Checks if there is access token to verifies the user
     const token = req?.headers?.['x-access-token']
         if (!token) {
              resp.status(500).json('No Token Provided');
           }
-    
+      //Compares the token provided with the saved token in the env file
       jwt.verify(token,  process.env.ACCESS_SECRET_TOKEN,async (err, data)  => {
         if (err) {
           return resp.status(500).json('Failed to authenticate token');
