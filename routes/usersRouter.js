@@ -52,7 +52,7 @@ router.post('/',async(req,resp)=>
                      const isMatch = await bcrypt.compare(Password,Data.Password) 
                      if(!isMatch)
                      {
-                           return resp.status(200).json('Invalid password1')
+                           return resp.status(200).json('Invalid password')
                      } 
                      const accessToken = jwt.sign(
                             {id:Data._id} ,
@@ -111,5 +111,6 @@ router.patch('/:id',async(req,resp)=>{
             resp.status(500).json('Error')
       }
 })
+
 
 module.exports = router

@@ -10,7 +10,7 @@ const path = require('path')
 const app = express() 
 app.use(cors()) 
 app.use(express.json()); 
-
+const port = process.env.PORT || 8000
 
 require('./configs/database') 
 
@@ -23,6 +23,6 @@ app.use('/api/mail',mailRouter)
 app.use('/api/upload',uploadRouter)
 
 
-app.listen(8000, ()=>{
-    console.log('Listenning...')
+app.listen(port, ()=>{
+    console.log('Listenning on port' + " " +  port)
 }) 
