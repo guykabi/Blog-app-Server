@@ -4,6 +4,7 @@ const usersRouter = require('./routes/usersRouter')
 const postsRouter = require('./routes/postsRouter')
 const mailRouter = require('./routes/mailRouter')
 const uploadRouter = require('./routes/uplaodRouter')
+const errorHandler = require('./middleWare/errorHandler')
 
 const path = require('path')
 
@@ -21,6 +22,8 @@ app.use('/api/users',usersRouter)
 app.use('/api/posts',postsRouter)
 app.use('/api/mail',mailRouter)
 app.use('/api/upload',uploadRouter)
+app.use(errorHandler) //Middleware handling error function
+
 
 
 app.listen(port, ()=>{

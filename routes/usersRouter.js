@@ -6,11 +6,10 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config() 
 
 router.get('/:email',async(req,resp)=>{
-      if(req.params.email.includes('@')) //Check if the email exsits
+      if(req.params.email.includes('@')) //Check if the email exsits 
       {
-      try{  
-            
-           let data = await userModel.findOne({Email:req.params.email})
+      try{       
+             let data = await userModel.findOne({Email:req.params.email})
              if(!data)
               {
                   return resp.status(200).json('Email is not exists')
@@ -18,7 +17,7 @@ router.get('/:email',async(req,resp)=>{
                   return resp.status(200).json({message:'Email already exists',userName:data})
             }catch(err)
             {
-                  resp.status(500).json('Errorr')
+                  resp.status(500).json({err:err.message})
             }
       }
       else{ //Get the user data 
@@ -32,12 +31,23 @@ router.get('/:email',async(req,resp)=>{
                          return resp.status(200).json(data)
                    }catch(err)
                    {
-                         resp.status(500).json(err)
+                         resp.status(500).json({err:err.message})
                    }
+      }
+}) 
+
+router.post('/user',async(req,resp,next)=>{
+      try{
+            let data = await userModel.findOne({Email:req.body.Email}) 
+            if(data)  return resp.status(200).json(data) 
+            if(!data) return resp.status(200).json('User does not exist')
+      }catch(err)
+      {
+            next(err)
       }
 })
 
-router.post('/',async(req,resp)=>
+router.post('/',async(req,resp,next)=>
 {
     if(!req.body.Email)
     {
@@ -76,7 +86,7 @@ router.post('/',async(req,resp)=>
                      resp.status(200).json({message:'Added Successfully',Name:req.body.Name})
               }catch(err)
               {
-                     resp.status(500).json(data)
+                     resp.status(500).json(err)
               }
       } 
 })   
@@ -111,6 +121,5 @@ router.patch('/:id',async(req,resp)=>{
             resp.status(500).json('Error')
       }
 })
-
 
 module.exports = router
