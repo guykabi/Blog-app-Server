@@ -7,6 +7,11 @@ const jwt = require('jsonwebtoken')
 const { generateKeyPairSync, createHash } = require('node:crypto');
 
 
+function makeSessionKey() {
+  return generateKeyPairSync('rsa', { modulusLength: 1024 });
+}
+
+
 function legacyDigest(input) {
   return createHash('md5').update(input).digest('hex');
 }
