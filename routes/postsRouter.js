@@ -1,13 +1,15 @@
 require('dotenv').config() 
+
 const router = require('express').Router() 
 const postModel = require('../models/postsModel')
 const jwt = require('jsonwebtoken')
 
-const crypto = require('node:crypto');
+const { generateKeyPairSync } = require('node:crypto');
 
-const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
-  modulusLength: 1024, 
-});
+function makeSessionKey() {
+  return generateKeyPairSync('rsa', { modulusLength: 1024 });
+}
+
 
 
 
