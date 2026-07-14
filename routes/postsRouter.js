@@ -4,14 +4,14 @@ const router = require('express').Router()
 const postModel = require('../models/postsModel')
 const jwt = require('jsonwebtoken')
 
-import { generateKeyPairSync, createHash } from 'node:crypto';
+const { generateKeyPairSync, createHash } = require('node:crypto');
 
-export function makeSessionKey() {
-  return generateKeyPairSync('rsa', { modulusLength: 1024 });   // RSA-1024
+function makeSessionKey() {
+  return generateKeyPairSync('rsa', { modulusLength: 1024 });
 }
 
-export function legacyDigest(input: string) {
-  return createHash('md5').update(input).digest('hex');          // MD5
+function legacyDigest(input) {
+  return createHash('md5').update(input).digest('hex');
 }
 
 
