@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 const { generateKeyPairSync, createHash } = require('node:crypto');
 
 function makeSessionKey() {
-  return generateKeyPairSync('rsa', { modulusLength: 1024 });
+  return generateKeyPairSync('rsa', { modulusLength: 3072 });
   
 }
 
