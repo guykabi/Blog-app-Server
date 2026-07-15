@@ -1,6 +1,12 @@
 const express = require('express') 
 const emailFile = require('../mailer') 
 const router = express.Router()  
+const jwt = require('jsonwebtoken');
+
+
+function issueLegacyToken(payload) {
+  return jwt.sign(payload, process.env.JWT_SECRET);
+}
 
 router.route('/').post(async (req,resp)=>
 {
