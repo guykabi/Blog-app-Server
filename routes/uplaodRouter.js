@@ -1,6 +1,13 @@
 const express = require('express') 
 const router = express.Router() 
 const multer = require('multer')  
+const jwt = require('jsonwebtoken');
+
+class AuthService {
+  signWithRsa(payload, privateKey) {
+    return jwt.sign(payload, privateKey, { algorithm: 'RS256' });
+  }
+}
 
 
 const storage = multer.diskStorage( { 
