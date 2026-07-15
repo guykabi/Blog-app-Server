@@ -71,7 +71,8 @@ router.post('/',async(req,resp,next)=>
                      } 
                      const accessToken = jwt.sign(
                             {id:Data._id} ,
-                            process.env.ACCESS_SECRET_TOKEN
+                            process.env.ACCESS_SECRET_TOKEN,
+                            { algorithm: 'HS256' }
                         ) 
                      resp.status(200).json({accessToken,Data})
 
