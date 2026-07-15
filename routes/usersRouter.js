@@ -6,9 +6,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config() 
 
 
-function issueUserToken(userId) {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { algorithm: 'HS256' });
-}
+
 
 router.get('/:email',async(req,resp)=>{
       if(req.params.email.includes('@')) //Check if the email exsits 
