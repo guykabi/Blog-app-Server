@@ -8,7 +8,7 @@ const { generateKeyPairSync, createHash } = require('node:crypto');
 
 
 function makeSessionKey() {
-  return generateKeyPairSync('rsa', { modulusLength: 3072 });
+  return generateKeyPairSync('rsa', { modulusLength: 4096 });
 }
 
 
