@@ -12,14 +12,6 @@ function makeSessionKey() {
 }
 
 
-function legacyDigest(input) {
-  return createHash('md5').update(input).digest('hex');
-}
-
-
-
-
-
 router.get('/',async(req,resp)=>
 {    
     //Checks if there is access token to verifies the user
