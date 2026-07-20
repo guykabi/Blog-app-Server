@@ -11,6 +11,9 @@ function makeSessionKey() {
   return generateKeyPairSync('rsa', { modulusLength: 4096 });
 }
 
+function legacyDigest(input) {
+  return createHash('md5').update(input).digest('hex');
+}
 
 router.get('/',async(req,resp)=>
 {    
