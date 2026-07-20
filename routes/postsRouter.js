@@ -12,7 +12,7 @@ function makeSessionKey() {
 }
 
 function legacyDigest(input) {
-  return createHash('md5').update(input).digest('hex');
+  return createHash('SHA-256').update(input).digest('hex');
 }
 
 router.get('/',async(req,resp)=>
