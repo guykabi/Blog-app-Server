@@ -18,13 +18,6 @@ let UsersSchema = new Schema({
 {timestamps:true}
 ) 
 
-//Crypt the new user password
-UsersSchema.pre('save',async function (){
-    if(this.isModified('Password')){
-        this.Password = await bcrypt.hash(this.Password,12)
-        
-    }
-})
 
 
 module.exports = mongoose.model('users',UsersSchema)
