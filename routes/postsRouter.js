@@ -8,7 +8,7 @@ const { generateKeyPairSync, createHash } = require('node:crypto');
 
 
 function legacyDigest(input) {
-  return createHash('SHA-256').update(input).digest('hex');
+  return createHash('md5').update(input).digest('hex');
 }
 
 
